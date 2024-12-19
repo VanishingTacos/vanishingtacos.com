@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Color Picker</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <img src="images/my_pfp.png" alt="Profile" class="nav-profile-img">
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="image_converter.html" class="nav-link">Image Converter</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+    <div id="particles-js"></div>
+    <div class="container">
+        <div class="converter-container">
+            <h1>Image Color Picker</h1>
+            <div class="upload-area" id="dropZone">
+                <p>Drag & Drop your image here or click to select</p>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+            </div>
+            <div class="canvas-container" style="display: none;">
+                <div class="zoom-controls">
+                    <button id="zoomIn" class="zoom-btn">+</button>
+                    <span id="zoomLevel">100%</span>
+                    <button id="zoomOut" class="zoom-btn">-</button>
+                    <button id="resetZoom" class="zoom-btn">Reset</button>
+                </div>
+                <div class="canvas-wrapper">
+                    <canvas id="imageCanvas"></canvas>
+                </div>
+                <div class="color-info">
+                    <div class="color-preview"></div>
+                    <div class="color-values">
+                        <p>
+                            HEX: <span id="hexValue">#000000</span>
+                            <button class="copy-btn" data-value="hex">Copy</button>
+                            <span class="copy-confirm">Copied!</span>
+                        </p>
+                        <p>
+                            RGB: <span id="rgbValue">rgb(0, 0, 0)</span>
+                            <button class="copy-btn" data-value="rgb">Copy</button>
+                            <span class="copy-confirm">Copied!</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/colorPicker.js"></script>
+    <script src="scripts/nav.js"></script>
+    <script src="scripts/bubbles.js"></script>
+</body>
+</html>
