@@ -1,49 +1,415 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>My Social Links</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terminal - Links</title>
+    <style>
+        @import url("styles.css");
+    </style>
+  </head>
+  <body>
+    <!-- Desktop with background windows -->
+    <div class="desktop">
+      <div class="desktop-inner">
+        <!-- Background Window 1 - System Monitor (Top Left) -->
+        <div class="bg-window bg-window-1">
+          <div class="bg-window-header">
+            <div class="bg-window-dot"></div>
+            <div class="bg-window-dot"></div>
+            <div class="bg-window-dot"></div>
+          </div>
+          <div class="bg-window-body">
+            system_monitor.sh<br />
+            ==================<br />
+            CPU: 34%<br />
+            RAM: 2.1GB / 8GB<br />
+            DISK: 45%<br />
+            NETWORK: ↑ 1.2KB/s ↓ 3.4KB/s<br />
+            UPTIME: 4d 12h 33m<br />
+            <br />
+            PROCESSES: 142<br />
+            THREADS: 891<br />
+            LOAD AVG: 0.45, 0.52, 0.48
+          </div>
+        </div>
 
-    </head>
-<body>
-    <nav class="navbar">
-        <div class="nav-content">
-            <a href="index.html" class="nav-link">
-                <img src="images/my_pfp.png" alt="Profile" class="nav-profile-img">
-            </a>
-            <!-- <div class="nav-links">
-                <a href="tools/image_converter.html" class="nav-link">Image Converter</a>
-                <a href="tools/color_picker.html" class="nav-link">Color Picker</a>
-            </div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div> -->
+        <!-- Background Window 2 - File Browser (Top Right) -->
+        <div class="bg-window bg-window-2">
+          <div class="bg-window-header">
+            <div class="bg-window-dot"></div>
+            <div class="bg-window-dot"></div>
+            <div class="bg-window-dot"></div>
+          </div>
+          <div class="bg-window-body">
+            file_browser.sh<br />
+            ==================<br />
+            ~/Documents<br />
+            <br />
+            drwxr-xr-x projects/<br />
+            drwxr-xr-x scripts/<br />
+            drwxr-xr-x downloads/<br />
+            -rw-r--r-- notes.txt<br />
+            -rw-r--r-- todo.md<br />
+            -rwxr-xr-x backup.sh<br />
+            -rw-r--r-- config.json<br />
+            <br />
+            7 items | 142.3 MB
+          </div>
         </div>
-    </nav>
-    <div id="particles-js"></div>
-    <div class="container">
-        <div class="profile-image"></div>
-        <h1>Connect with Me</h1>
-        <div class="social-links">
-            <a class="social-link" href="https://x.com/VanishingTacos" target="_blank">
-                <img src="images/x_logo.png" alt="X (Formally Twitter)">
-                X (Archived)
-            </a>
-            <a class="social-link" href="https://bsky.app/profile/vanishingtacos.com" target="_blank">
-                <img src="images/bluesky_logo.png" alt="Bluesky">
-                Bluesky
-            </a>
-            <a class="social-link" href="https://github.com/VanishingTacos" target="_blank">
-                <img src="images/github_logo.png" alt="GitHub">
-                GitHub
-            </a>
+
+        <!-- Background Window 3 - Log Viewer (Bottom Left) -->
+        <div class="bg-window bg-window-3">
+          <div class="bg-window-header">
+            <div class="bg-window-dot"></div>
+            <div class="bg-window-dot"></div>
+            <div class="bg-window-dot"></div>
+          </div>
+          <div class="bg-window-body">
+            system.log<br />
+            ==================<br />
+            [12:45:23] INFO: Process started<br />
+            [12:45:24] INFO: Loading modules<br />
+            [12:45:25] OK: All systems operational<br />
+            [12:45:26] INFO: Listening on port 8080<br />
+            [12:45:27] INFO: Database connected<br />
+            [12:45:28] INFO: Cache initialized
+          </div>
         </div>
+
+        <!-- Background Window 4 - Music Player (Bottom Right) -->
+        <div class="bg-window bg-window-4">
+          <div class="bg-window-header">
+            <div class="bg-window-dot"></div>
+            <div class="bg-window-dot"></div>
+            <div class="bg-window-dot"></div>
+          </div>
+          <div class="bg-window-body">
+            music_player.sh<br />
+            ==================<br />
+            ♫ NOW PLAYING<br />
+            <br />
+            Track: Cyberpunk Dreams<br />
+            Artist: Digital Nomad<br />
+            Album: Terminal Sessions<br />
+            Duration: 4:12<br />
+            <br />
+            [████████░░░░░░] 2:34<br />
+            <br />
+            ⏮ ⏸ ⏭ 🔊 ▮▮▮▮▮▮▮▮░░
+          </div>
+        </div>
+      </div>
     </div>
-    <script src="scripts/particles.min.js"></script>
-    <script src="scripts/particles-config.js"></script>
-    <script src="scripts/nav.js"></script>
-</body>
+
+    <!-- Main terminal window -->
+    <div class="terminal-container">
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <div class="terminal-buttons">
+            <div class="terminal-button"></div>
+            <div class="terminal-button"></div>
+            <div class="terminal-button"></div>
+          </div>
+          <div class="terminal-title">terminal@links: ~</div>
+          <div style="width: 42px"></div>
+        </div>
+
+        <div class="terminal-body" id="terminal-output">
+          <div class="content" id="output"></div>
+          <div class="input-line">
+            <span class="prompt">user@terminal:~$</span>
+            <input
+              type="text"
+              id="command-input"
+              autocomplete="off"
+              autofocus
+            />
+            <span class="cursor"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const input = document.getElementById("command-input");
+      const output = document.getElementById("output");
+      const terminalBody = document.getElementById("terminal-output");
+
+      const links = {
+        twitter: "https://x.com/VanishingTacos",
+        github: "https://github.com/VanishingTacos",
+        website: "https://vanishingtacos.com",
+        email: "mailto:me@vanishingtacos.com",
+      };
+
+      const commands = {
+        help: () => {
+          return `Available commands:
+  help          - Show this help message
+  links         - Display all social links
+  clear         - Clear the terminal
+  about         - About this terminal
+  cowsay [msg]  - Make a cow say something
+  fortune       - Get a random fortune
+  matrix        - Enter the matrix
+  cat [file]    - Read a file
+  ls            - List files
+  whoami        - Display current user
+  date          - Show current date
+  neofetch      - Display system info
+  hack          - Hack the mainframe
+  sudo [cmd]    - Run command as root
+  banner [text] - Display ASCII banner`;
+        },
+
+        links: () => {
+          let result = "Available links:\n\n";
+          for (let [name, url] of Object.entries(links)) {
+            result += `  <a href="${url}" class="link-item" target="_blank">${name}</a>`;
+          }
+          return result;
+        },
+
+        clear: () => {
+          output.innerHTML = "";
+          return "";
+        },
+
+        about: () => {
+          return `Terminal Links v1.0
+A retro CRT-styled link aggregator
+Type 'help' for available commands
+Type 'links' to see all social links`;
+        },
+
+        cowsay: (args) => {
+          const message = args.join(" ") || "Hello, World!";
+          const border = "_".repeat(message.length + 2);
+          return `<div class="cowsay-box">
+ ${border}
+< ${message} >
+ ${"-".repeat(message.length + 2)}
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||
+</div>`;
+        },
+
+        fortune: () => {
+          const fortunes = [
+            "You will find great success in the terminal.",
+            "A command typed is a command learned.",
+            "The best way to predict the future is to code it.",
+            "Your social links will bring you many followers.",
+            "Today is a good day to commit your code.",
+            "You will soon discover a hidden Easter egg.",
+            "The terminal is strong with this one.",
+            "Error 404: Fortune not found. Just kidding!",
+          ];
+          return fortunes[Math.floor(Math.random() * fortunes.length)];
+        },
+
+        matrix: () => {
+          return `Wake up, Neo...
+The Matrix has you...
+Follow the white rabbit.
+
+Knock, knock, Neo.`;
+        },
+
+        cat: (args) => {
+          const files = {
+            "profile.txt": `USERNAME: VanishingTacos
+HANDLE: @VanishingTacos
+STATUS: online
+BIO: Just another terminal enthusiast`,
+            "secret.txt": "The cake is a lie. 🎂",
+            "todo.md": `# TODO List
+- [x] Create new website
+- [ ] Take over the world
+- [ ] Buy milk`,
+            "readme.md": `# Terminal Links
+Welcome to my link aggregator!
+Try 'cowsay' for a fun surprise.`,
+          };
+
+          const filename = args[0];
+          if (!filename) {
+            return "cat: missing file operand\nTry 'ls' to see available files";
+          }
+          if (files[filename]) {
+            return files[filename];
+          }
+          return `cat: ${filename}: No such file or directory`;
+        },
+
+        ls: () => {
+          return `profile.txt    readme.md      todo.md
+secret.txt     links/         scripts/`;
+        },
+
+        whoami: () => {
+          return "user\n(but really, who are any of us?)";
+        },
+
+        date: () => {
+          return new Date().toString();
+        },
+
+        neofetch: () => {
+          return `<div class="ascii-art">
+      ___     
+     (o o)    user@terminal
+    (  V  )   ---------------
+    /|||||\\   OS: TerminalOS
+     |||||    Shell: bash 5.0
+              CPU: Intel i7-9700K
+              Memory: 2.1GB / 8GB
+              Uptime: 4 days, 12 hours
+</div>`;
+        },
+
+        hack: () => {
+          return `Initializing hack sequence...
+[████████████████████] 100%
+
+ACCESS GRANTED
+Welcome to the mainframe.
+Just kidding! There's no mainframe to hack here. 😄`;
+        },
+
+        sudo: (args) => {
+          const cmd = args.join(" ");
+          if (!cmd) {
+            return "sudo: command not specified";
+          }
+          return `[sudo] password for user: 
+Sorry, you don't have permission to use sudo.
+This incident will be reported. 👀`;
+        },
+
+        banner: (args) => {
+          const text = args.join(" ").toUpperCase() || "HELLO";
+          return `<div class="ascii-art">
+╔═══════════════════════╗
+║  ${text.padEnd(19)}  ║
+╚═══════════════════════╝
+</div>`;
+        },
+      };
+
+      // Initialize with welcome message
+      addOutput(`Welcome to Terminal Links v1.0
+Type 'help' for available commands
+Type 'links' to see all social links
+`);
+
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          const command = input.value.trim();
+          if (command) {
+            addOutput(
+              `<span class="prompt">user@terminal:~$</span> ${command}`
+            );
+            executeCommand(command);
+          } else {
+            addOutput(`<span class="prompt">user@terminal:~$</span>`);
+          }
+          input.value = "";
+          updateFakeCursor();
+        }
+      });
+
+      // --- Fake caret positioning ---
+      // Create a hidden mirror element to measure input text width
+      const mirror = document.createElement("span");
+      mirror.id = "input-mirror";
+      mirror.style.position = "absolute";
+      mirror.style.left = "-9999px";
+      mirror.style.top = "0";
+      mirror.style.visibility = "hidden";
+      mirror.style.whiteSpace = "pre";
+      document.body.appendChild(mirror);
+
+      function syncMirrorStyles() {
+        const s = getComputedStyle(input);
+        mirror.style.fontFamily = s.fontFamily;
+        mirror.style.fontSize = s.fontSize;
+        mirror.style.fontWeight = s.fontWeight;
+        mirror.style.letterSpacing = s.letterSpacing;
+        mirror.style.textTransform = s.textTransform;
+      }
+
+      function updateFakeCursor() {
+        const cursorEl = document.querySelector(".cursor");
+        if (!cursorEl) return;
+        syncMirrorStyles();
+        // preserve spaces
+        mirror.textContent = input.value.replace(/ /g, "\u00a0");
+
+        const lineRect = input.parentElement.getBoundingClientRect();
+        const inputRect = input.getBoundingClientRect();
+        const textWidth = mirror.offsetWidth;
+
+        // left offset inside the input-line (account for input scroll)
+        const left = (inputRect.left - lineRect.left) + textWidth - input.scrollLeft;
+        cursorEl.style.left = `${left}px`;
+      }
+
+      // Update cursor while typing / on resize / scroll
+      input.addEventListener("input", updateFakeCursor);
+      input.addEventListener("keyup", updateFakeCursor);
+      input.addEventListener("keydown", () => setTimeout(updateFakeCursor, 0));
+      input.addEventListener("scroll", updateFakeCursor);
+      window.addEventListener("resize", updateFakeCursor);
+      terminalBody.addEventListener("scroll", updateFakeCursor);
+
+      // show/hide fake cursor on focus/blur
+      input.addEventListener("focus", () => {
+        const c = document.querySelector(".cursor");
+        if (c) c.style.display = "block";
+        updateFakeCursor();
+      });
+      input.addEventListener("blur", () => {
+        const c = document.querySelector(".cursor");
+        if (c) c.style.display = "none";
+      });
+
+      // initial position
+      updateFakeCursor();
+
+      function addOutput(text) {
+        const line = document.createElement("div");
+        line.className = "output-line";
+        line.innerHTML = text;
+        output.appendChild(line);
+        terminalBody.scrollTop = terminalBody.scrollHeight;
+      }
+
+      function executeCommand(commandLine) {
+        const parts = commandLine.split(" ");
+        const cmd = parts[0].toLowerCase();
+        const args = parts.slice(1);
+
+        if (commands[cmd]) {
+          const result = commands[cmd](args);
+          if (result) {
+            addOutput(result);
+          }
+        } else {
+          addOutput(
+            `<span class="error">Command not found: ${cmd}</span>\nType 'help' for available commands`
+          );
+        }
+      }
+
+      // Keep input focused
+      terminalBody.addEventListener("click", () => {
+        input.focus();
+      });
+    </script>
+  </body>
+</html>
